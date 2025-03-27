@@ -4,10 +4,11 @@ require 'Model/pdo.php';
 
 <ul>
     <?php
-    $mangas = $dbPDO->prepare("SELECT annee, titre FROM manga ORDER BY annee");
+    $mangas = $dbPDO->prepare("SELECT annee, titre, id FROM manga ORDER BY annee");
     $mangas->execute();
 
     foreach ($mangas as $manga) { ?>
-        <li><u><?php echo htmlspecialchars($manga['titre']); ?></u><br><?php echo htmlspecialchars($manga['annee']); ?></li>
+        <li><u><a href="manga.php?id=<?php echo $manga['id']; ?>"><?php echo htmlspecialchars($manga['titre']); ?></a>
+        </u><br><?php echo htmlspecialchars($manga['annee']); ?></li>
     <?php } ?>
 </ul>
